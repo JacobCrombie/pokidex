@@ -10,34 +10,34 @@ function _drawActivePokemon() {
   }
 
 }
-function _drawMyPokemons(){
+function _drawMyPokemons() {
   let pokemons = ProxyState.myPokemons
   let template = ''
-  pokemons.forEach(s => template += `<li onclick="app.myPokemonsController.setActive('${s.id}')">${s.name}</li>`)
+  pokemons.forEach(s => template += `<li class="text-color-yel" onclick="app.myPokemonsController.setActive('${s.id}')">${s.name}</li>`)
   document.getElementById('my-pokemons').innerHTML = template
 }
 
-export default class MyPokemonsController{
-  constructor(){
+export default class MyPokemonsController {
+  constructor() {
     ProxyState.on('activePokemon', _drawActivePokemon)
     ProxyState.on('myPokemons', _drawMyPokemons)
     this.getMyPokemons()
   }
-  getMyPokemons(){
+  getMyPokemons() {
     try {
       myPokemonsService.getMyPokemons()
     } catch (error) {
       console.error(error);
     }
   }
-  addPokemon(){
+  addPokemon() {
     try {
       myPokemonsService.addPokemon()
     } catch (error) {
       console.error(error);
     }
   }
-  removePokemon(){
+  removePokemon() {
     try {
       myPokemonsService.removePokemon()
     } catch (error) {
@@ -45,7 +45,7 @@ export default class MyPokemonsController{
     }
   }
 
-  setActive(id){
+  setActive(id) {
     try {
       myPokemonsService.setActive(id)
     } catch (error) {
